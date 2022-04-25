@@ -1,0 +1,148 @@
+.label-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-start {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex-col {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.flex-col-start {
+    justify-content: flex-start;
+}
+
+.align-self-start {
+    align-self: flex-start;
+}
+
+.align-self-stretch {
+    align-self: stretch;
+}
+
+.grid {
+    gap: 1rem;
+}
+
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color);
+}
+
+.bg-tertiary {
+    background-color: var(--tertiary-color);
+}
+
+.primary {
+    color: var(--primary-color);
+}
+
+.secondary {
+    color: var(--secondary-color);
+}
+
+.tertiary {
+    color: var(--tertiary-color);
+}
+
+.pop-up-container {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    position: absolute;
+    background-color: transparent;
+    display: none;
+}
+
+.pop-up {
+    width: 15rem;
+    max-height: 20rem;
+    background-color: var(--tertiary-color);
+    box-shadow: 0 0.25rem 0.75rem var(--charcoal-gray);
+}
+
+.show {
+    display: flex;
+    transition: 2ms;
+}
+
+.none {
+    display: none;
+}
+
+.btn-group {
+    width: 100%;
+    justify-content: space-around;
+}
+
+.pop-up-container .btn {
+    min-width: 5rem;
+}
+
+.pop-up-container .btn-round {
+    background-color: var(--tertiary-color);
+}
+
+form {
+    gap: 1rem;
+}
+
+.form-field {
+    font-size: 0.875rem;
+}
+
+.input-radio {
+    margin-top: 2px;
+}
+
+.border-top-black {
+    border-top: 2px solid var(--charcoal-black-light);
+}
+
+.border-bottom-black {
+    border-bottom: 2px solid var(--charcoal-black-light);
+}
+
+.vertical-flow-auto {
+    overflow-y: auto;
+}
+
+.text-center {
+    vertical-align: middle;
+}
+
+.pos-rel {
+    position: relative;
+}
