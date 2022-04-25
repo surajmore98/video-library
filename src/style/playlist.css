@@ -1,0 +1,10 @@
+.playlist-container .card {
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--info);
+}
+
+.playlist-container .card:hover {
+    background-color: var(--info);
+    color: var(--secondary-color);
+}
