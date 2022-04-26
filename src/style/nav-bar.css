@@ -1,0 +1,39 @@
+@import url("./variable.css");
+
+.nav-bar {
+    background-color: var(--secondary-color);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.nav-bar .btn {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
+}
+
+.nav-search-action {
+    position: relative;
+    border-radius: 0.25rem;
+    width: 40%;
+}
+
+.search-input {
+    width: 100%;
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    border-radius: 0;
+}
+
+.nav-search-action  .material-icons {
+    right: 1.65rem;
+    top: 1px;
+    border: none;
+    position: relative;
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    background-color: var(--tertiary-color);
+}
