@@ -1,7 +1,6 @@
 import { Navbar } from "../components/nav-bar";
 import { SnackBar } from "../components/snack-bar";
 import { CategoryList } from "../components/video-list/category-list";
-import { SelectPlayList } from "../components/video-list/select-play-list";
 import { Video } from "../components/video-list/video";
 import { useData } from "../contexts/data-context";
 
@@ -22,7 +21,6 @@ export const VideoList = () => {
                         })
                     }
                 </div>
-                <SelectPlayList/>
             </div> 
             { error && <SnackBar/> }
         </div>
