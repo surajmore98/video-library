@@ -1,17 +1,23 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
     const [isMenu, setMenu] = useState(false);
     const [isAuth, setAuthx] = useState(false);
-
-    function menuClickHandler() {
+    const navigate = useNavigate();
+    
+    const menuClickHandler = () =>  {
         setMenu((value) => !value);
+    }
+
+    const logoClickHandler = () => {
+        navigate("/");
     }
     
     return (
         <div>
             <nav className="nav-bar fixed">
-                <div className="logo">
+                <div className="logo" onClick={logoClickHandler}>
                     <div className="logo-text">Video Library</div>
                 </div>
                 <div className="nav-action nav-search-action">

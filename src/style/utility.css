@@ -89,7 +89,6 @@
 .pop-up {
     width: 15rem;
     max-height: 20rem;
-    background-color: var(--tertiary-color);
     box-shadow: 0 0.25rem 0.75rem var(--charcoal-gray);
 }
 
@@ -127,6 +126,10 @@ form {
     margin-top: 2px;
 }
 
+.border-black-light {
+    border: 1px solid var(--charcoal-black-light);
+}
+
 .border-top-black {
     border-top: 2px solid var(--charcoal-black-light);
 }
@@ -145,4 +148,8 @@ form {
 
 .pos-rel {
     position: relative;
+}
+
+.full-width {
+    width: 100%;
 }

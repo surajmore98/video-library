@@ -1,0 +1,117 @@
+.filter-container {
+    display: flex;
+    justify-content: space-around;
+    height: 5rem;
+    gap: 0.5rem;
+}
+
+.filter-container-item {
+    display: block; 
+    border: none;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.filter-category-image {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.filter-category:hover .filter-active-image,
+.filter-active-image {
+    background-color: var(--info-dark);
+    
+}
+
+.filter-category-text {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: var(--primary-color);
+}
+
+.filter-category:hover .filter-category-text,
+.filter-active-text {
+    color: var(--info-dark);
+}
+
+.video-list {
+    display: grid;
+    margin-top: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    width: auto;
+    background-color: var(--charcoal-white);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    min-width: 15rem;
+}
+
+.card .image {
+    border-radius: 0.25rem;
+    max-width: 25rem;
+    min-height: 15rem;
+}
+
+.card-menu {
+    position: absolute;
+    z-index: 1;
+    background-color: var(--white);
+    font-size: 0.875rem;
+    height: auto;
+    box-shadow: 0 0.25rem 0.5rem var(--charcoal-gray);
+    border-radius: 0.2rem;
+    display: none;
+}
+
+.card-menu-active {
+    display: block;
+}
+
+.card-menu-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    color: var(--primary-color);
+}
+
+.card-menu-item:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.playlist-menu {
+    background-color: var(--charcoal-black-light);
+    width: 15rem;
+    z-index: 2;
+    top: 40%;
+    left: 40%;
+    position: fixed;
+}
+
+.material-icons {
+    color: var(--primary-color);
+}
+
+.material-icons:hover {
+    color: var(--white);
+}
+.card .active {
+    color: var(--white);
+    background-color: var(--primary-color);
+}
+
+@media screen and (max-width: 800px) {
+    .video-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
