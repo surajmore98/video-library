@@ -36,4 +36,7 @@
 
 .nav-menu {
     background-color: var(--tertiary-color);
+    position: fixed;
+    width: 100%;
+    top: 3.5rem;
 }

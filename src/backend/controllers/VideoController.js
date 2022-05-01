@@ -51,3 +51,21 @@ export const getVideoHandler = function (schema, request) {
     );
   }
 };
+
+export const getVideoByTypeHandler = function (schema, request) {
+  const { videoType } = request.params;
+  try {
+    const videos = schema.videos.where(
+      (item) => item.type === videoType).models;
+
+    return new Response(200, {}, { videos });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
