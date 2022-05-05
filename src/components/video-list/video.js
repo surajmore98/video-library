@@ -1,31 +1,8 @@
-import { useState } from "react";
 import { useAuth } from "../../contexts/auth-context";
 import { useData } from "../../contexts/data-context";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-
-// add to Liked videolist
-const addToLikedVideos = async (video, token) => {
-    return await axios.post("/api/user/likes",
-    {
-        video: video 
-    },
-    {
-        headers: {
-            authorization: token
-        }
-    });
-}
-
-// remove from liked videolist
-const removeFromLikedVideos = async (videoId, token) => {
-    return await axios.delete(`/api/user/likes/${videoId}`,
-    {
-        headers: {
-            authorization: token
-        }
-    });
-}
+import { addToLikedVideos, removeFromLikedVideos } from "../../service/like-video-service";
 
 // add to Liked videolist
 const addToWatchLaterVideos = async (video, token) => {
@@ -50,9 +27,9 @@ const removeFromWatchLaterVideos = async (videoId, token) => {
     });
 }
 
-export const Video = ({ data }) => {
+export const Video = ({ data, formStateSetter }) => {
     const { title, creator, image, _id } = data;
-    const { setError, setLikedVideos, setWatchLater, likedVideoList, watchLaterList } = useData();
+    const { setError, setLikedVideos, setWatchLater, likedVideoList, watchLaterList, setCurrentVideo, playList } = useData();
     const { auth } = useAuth(); 
     const navigate = useNavigate();
     const isLiked = likedVideoList.find(x => x._id === _id);
@@ -107,6 +84,19 @@ export const Video = ({ data }) => {
         }
     }
 
+    const playListClickHandler = () => {
+        if(auth && auth.isAuthenticated) {
+            if(playList && playList.length > 0) {
+                formStateSetter(true);
+                setCurrentVideo(data);
+            } else {
+                setError("There is no Playlist!");
+            }
+        } else {
+            navigate("/login", {replace: true});
+        }
+    }
+
     return (
         <div className="card">
             <div className="card-content">
@@ -129,7 +119,7 @@ export const Video = ({ data }) => {
                     <button className={`btn btn-round ${isAddedToWatchLater ? 'active' : ''}`} onClick={WatchListClickHandler}>
                         <i className={`material-icons ${isAddedToWatchLater ? 'active' : ''}`} title="add to watch later">watch_later</i>
                     </button>
-                    <button className="btn btn-round" onClick={() => iconClickHandler("menu")}>
+                    <button className="btn btn-round" onClick={playListClickHandler}>
                         <i className="material-icons" title="add to playlist">playlist_add</i>
                     </button>
                     {/* To-do functionality */}

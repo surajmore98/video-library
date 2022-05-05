@@ -12,7 +12,7 @@ export const SnackBar = () => {
                     {error}
                     </div>
                     <div className="snack-bar-action">
-                        <button className="btn btn-round white bg-charcoal-black"
+                        <button className="btn btn-round bg-error-dark"
                             onClick={closeClickHandler}>
                             <i className="material-icons">
                                 close
