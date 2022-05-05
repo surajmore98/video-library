@@ -2,17 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../../contexts/auth-context";
 import { useData } from "../../contexts/data-context";
-
-const addVideoToPlaylist = async (playListId, video, token) => {
-    return axios.post(`/api/user/playlists/${playListId}`, {
-        video: video
-    },
-    {
-        headers: {
-            authorization: token
-        }
-    });
-}
+import { addVideoToPlaylist } from "../../service/play-list-service";
 
 export const SelectPlayList = ({ formStateSetter }) => {
     const { currentVideo, playList, setPlayListData } = useData();

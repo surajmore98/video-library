@@ -46,7 +46,7 @@ export const DataProvider = ({ children }) => {
     //get Playlist 
     const setPlayListData = async (token) => {
         try {
-            const response = await getPlayListData();
+            const response = await getPlayListData(token);
             if(response.status === 200) {
                 setPlayList(response.data.playlists);
             }
