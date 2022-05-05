@@ -38,3 +38,14 @@ export const getPlayListData = async (token) => {
         }
     });
 }
+
+export const addVideoToPlaylist = async (playListId, video, token) => {
+    return axios.post(`/api/user/playlists/${playListId}`, {
+        video: video
+    },
+    {
+        headers: {
+            authorization: token
+        }
+    });
+}
