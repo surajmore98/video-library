@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/auth-context';
 import axios from "axios";
 import { SnackBar } from '../components/snack-bar';
 import { useData } from '../contexts/data-context';
+import { register } from '../service/auth-service';
 
 export const Register = () => {
     const { updateAuth, setUser } = useAuth();
@@ -23,12 +24,7 @@ export const Register = () => {
         e.preventDefault();
         if(credential) {
             try {
-                const response =  await axios.post("api/auth/signup", {
-                    email: credential.email,
-                    password: credential.password,
-                    firstName: credential.firstName,
-                    lastName: credential.lastName
-                });
+                const response =  await register(credential);
 
                 if(response.status === 201) {
                     updateAuth(response.data.encodedToken, true);

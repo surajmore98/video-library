@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useContext, useState } from 'react';
+import { getPlayListData } from "../service/play-list-service";
 
 const DataContext = React.createContext();
 export const useData = () => useContext(DataContext);
@@ -10,6 +11,8 @@ export const DataProvider = ({ children }) => {
     const [currentCategory, setCurrentCategory] = useState("");
     const [watchLaterList, setWatchLater] = useState([]);
     const [likedVideoList, setLikedVideos] = useState([]);
+    const [playList, setPlayList] = useState([]);
+    const [currentVideo, setCurrentVideo] = useState({});
     const [error, setError] = useState("");
 
     //get categories
@@ -39,30 +42,23 @@ export const DataProvider = ({ children }) => {
             }
         })();
     }, []);
-    
-    //get watchlaterList 
-    const getLikedVideos = async (token) => {
-        try {
-            const response = await axios.get("/api/user/likes",
-            {
-                headers: {
-                    authorization: token
-                }
-            });
 
+    //get Playlist 
+    const setPlayListData = async (token) => {
+        try {
+            const response = await getPlayListData(token);
             if(response.status === 200) {
-                console.log(response.data);
-                setLikedVideos(response.data.likes);
+                setPlayList(response.data.playlists);
             }
         } catch(ex) {
             console.error(ex.message);
         }
     }
 
-    const data = { categories, videos, currentCategory, watchLaterList, error,
-        likedVideoList,
-        setCurrentCategory, getLikedVideos, setError, setLikedVideos,
-        setWatchLater };
+    const data = { categories, videos, currentCategory, watchLaterList,
+        error, likedVideoList, playList, currentVideo,
+        setCurrentCategory, setLikedVideos, setError, setWatchLater,
+        setPlayList, setCurrentVideo, setPlayListData };
 
     return (
         <DataContext.Provider value ={data}>

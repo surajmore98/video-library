@@ -101,6 +101,15 @@
     display: none;
 }
 
+.fixed-bottom {
+    position: fixed;
+}
+
+.snack-bar {
+    background-color: var(--error-dark);
+    max-width: 20rem;
+}
+
 .btn-group {
     width: 100%;
     justify-content: space-around;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
     const [isMenu, setMenu] = useState(false);
@@ -18,7 +18,7 @@ export const Navbar = () => {
         <div>
             <nav className="nav-bar fixed">
                 <div className="logo" onClick={logoClickHandler}>
-                    <div className="logo-text">Video Library</div>
+                    <div className="logo-text">Sportz</div>
                 </div>
                 <div className="nav-action nav-search-action">
                     <input type="text" placeholder="Search" className="input search-input"/>
@@ -45,6 +45,7 @@ export const Navbar = () => {
             </nav>
             <ul className={ isMenu ? 'nav-menu nav-menu-show bg-white' :'nav-menu' }>
                 <li><a className="nav-menu-link charcoal-black">My Name</a></li>
+                <li><Link className="nav-menu-link charcoal-black" to="/playlists">My PlayList</Link></li>
                 <li><a className="nav-menu-link charcoal-black">My PlayList</a></li>
                 <li><a className="nav-menu-link charcoal-black">Watch Later</a></li>
                 <li><a className="nav-menu-link charcoal-black">View History</a></li>

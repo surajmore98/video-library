@@ -7,9 +7,12 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { RequireAuth } from "./wrappers/require-auth";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { Logout } from "./pages/logout";
+import { PlayList } from "./pages/playlist";
+import { PlayListDetails } from "./pages/play-list-detail";
 
 const App = () => {
   return (
@@ -20,6 +23,8 @@ const App = () => {
             <Route path="/" element={<Home />}></Route>
             <Route path="/videos" element={<VideoList />}></Route>
             <Route path="/videos/:type" element={<VideoList />}></Route>
+            <Route path="/playlists" element={<RequireAuth> <PlayList /> </RequireAuth>}></Route>
+            <Route path="/playlist/:id" element={<RequireAuth> <PlayListDetails /> </RequireAuth>}></Route>
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>

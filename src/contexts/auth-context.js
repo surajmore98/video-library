@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     if(localToken && auth && !auth.isAuthenticated) {
         updateAuth(localToken, true);
+        setUser(JSON.parse(localStorage.getItem("user")));
     }
 
     return (<AuthContext.Provider value={{ auth, user,

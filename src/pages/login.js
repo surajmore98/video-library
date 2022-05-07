@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/nav-bar';
 import { useAuth } from '../contexts/auth-context';
-import axios from "axios";
 import { SnackBar } from '../components/snack-bar';
 import { useData } from '../contexts/data-context';
+import { login } from '../service/auth-service';
 
 export const Login = () => {
     const { updateAuth, setUser } = useAuth();
@@ -27,17 +26,15 @@ export const Login = () => {
         e.preventDefault();
         if(credential) {
             try {
-                const response =  await axios.post("api/auth/login", {
-                    email: credential.email,
-                    password: credential.password
-                });
+                const response =  await login(credential);
 
                 if(response.status === 200) {
                     updateAuth(response.data.encodedToken, true);
+                    setUser(response.data.foundUser);
                     if(isRemeberMe) {
                         localStorage.setItem("token", response.data.encodedToken);
+                        localStorage.setItem("user", JSON.stringify(response.data.foundUser));
                     }
-                    setUser(response.data.foundUser);
                 }
             } catch(e) {
                 console.error(e);
@@ -70,10 +67,10 @@ export const Login = () => {
                             </div>
                         </div>
                         <div className="form-field-section">
-                            <div className="form-field form-field-horizontal font-md">
+                            <div className="form-field form-field-horizontal">
                                 <label className="form-control-horizontal">
                                     <input type="checkbox" value={isRemeberMe} onClick={checkboxChangedHandler}/>
-                                    <span className="input-label">Remember me</span>
+                                    <span className="input-label register-checkbox-label">Remember me</span>
                                 </label>
                             </div>
                         </div>
