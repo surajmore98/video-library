@@ -4,7 +4,7 @@ import { removeFromWatchLaterVideos, addToWatchLaterVideos} from "../../service/
 import { addToLikedVideos, removeFromLikedVideos } from "../../service/like-video-service";
 import { ResponseCode } from "../../utility/status-code";
 import { useNavigator } from "../../utility/navigate";
-import { useNavigate } from 'react-router-dom';
+import { LOGIN } from "../../utility/route-variables";
 
 export const Video = ({ data, formStateSetter }) => {
     const { title, creator, image, _id } = data;
