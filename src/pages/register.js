@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { Navbar } from '../components/nav-bar';
 import { useAuth } from '../contexts/auth-context';
-import axios from "axios";
 import { SnackBar } from '../components/snack-bar';
 import { useData } from '../contexts/data-context';
 import { register } from '../service/auth-service';
+import { ResponseCode } from '../utility/status-code';
+import { useNavigator } from '../utility/navigate';
+import { HOME, LOGIN } from '../utility/route-variables';
 
 export const Register = () => {
     const { updateAuth, setUser } = useAuth();
     const { error, setError } = useData();
     const [credential, setCredential] = useState({ email: "", password: "", firstName: "", lastName: "" });
-    const [isRemeberMe, setRemeberMe] = useState();
-    const navigate = useNavigate();
+    const navigateTo = useNavigator();
 
     function inputChangeHandler(e, type) {
         const value  = e.target.value;
@@ -25,14 +24,10 @@ export const Register = () => {
         if(credential) {
             try {
                 const response =  await register(credential);
-
-                if(response.status === 201) {
+                if(response.status === ResponseCode.CREATED) {
                     updateAuth(response.data.encodedToken, true);
-                    if(isRemeberMe) {
-                        localStorage.setItem("token", response.data.encodedToken);
-                    }
                     setUser(response.data.foundUser);
-                    navigate("/");
+                    navigateTo(HOME);
                 }
             } catch(e) {
                 console.error(e);
@@ -41,8 +36,6 @@ export const Register = () => {
             }
         }
     }
-
-    const navigateToLogin = () => navigate("/login");
 
     return (
         <div>
@@ -86,7 +79,7 @@ export const Register = () => {
                             </div>
                         </div>
                         <button className="btn btn-full product-btn bg-secondary white p-md font-bold" type="submit">Create New Account</button> 
-                        <button onClick={navigateToLogin} className="btn btn-full product-btn bg-tertiary charcoal-black p-md font-bold">Already have an Account</button> 
+                        <button onClick={() => navigateTo(LOGIN)} className="btn btn-full product-btn bg-tertiary charcoal-black p-md font-bold">Already have an Account</button> 
                     </form>
                 </div>
             </div>

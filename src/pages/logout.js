@@ -1,19 +1,16 @@
-import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from '../contexts/auth-context';
+import { useNavigator } from '../utility/navigate';
+import { LOGIN } from '../utility/route-variables';
 
 export const Logout = () => {
     const { updateAuth } = useAuth();
-    const navigate = useNavigate();
+    const navigateTo = useNavigator();
     
     useEffect(()=> {
         updateAuth("", false);
         localStorage.removeItem("token");
     },[]);
-
-    function navigateToLogin() {
-        navigate("/login");
-    }
 
     return (
         <div className="main-content register-container">
@@ -21,7 +18,7 @@ export const Logout = () => {
                 <div className="header">
                     <p>You are Logged Out, Please Sign in Again.</p>
                 </div>
-                <button className="btn bg-info white p-sm" onClick={navigateToLogin}>Sign In</button> 
+                <button className="btn bg-info white p-sm" onClick={() => navigateTo(LOGIN)}>Sign In</button> 
             </div>
         </div>
 
