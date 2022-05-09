@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useContext, useState } from 'react';
 import { getPlayListData } from "../service/play-list-service";
+import { ResponseCode } from "../utility/status-code";
 
 const DataContext = React.createContext();
 export const useData = () => useContext(DataContext);
@@ -12,6 +13,7 @@ export const DataProvider = ({ children }) => {
     const [watchLaterList, setWatchLater] = useState([]);
     const [likedVideoList, setLikedVideos] = useState([]);
     const [playList, setPlayList] = useState([]);
+    const [history, setHistory] = useState([]);
     const [currentVideo, setCurrentVideo] = useState({});
     const [error, setError] = useState("");
 
@@ -47,7 +49,7 @@ export const DataProvider = ({ children }) => {
     const setPlayListData = async (token) => {
         try {
             const response = await getPlayListData(token);
-            if(response.status === 200) {
+            if(response.status === ResponseCode.OK) {
                 setPlayList(response.data.playlists);
             }
         } catch(ex) {
@@ -56,9 +58,9 @@ export const DataProvider = ({ children }) => {
     }
 
     const data = { categories, videos, currentCategory, watchLaterList,
-        error, likedVideoList, playList, currentVideo,
+        error, likedVideoList, playList, currentVideo, history,
         setCurrentCategory, setLikedVideos, setError, setWatchLater,
-        setPlayList, setCurrentVideo, setPlayListData };
+        setPlayList, setCurrentVideo, setPlayListData, setHistory };
 
     return (
         <DataContext.Provider value ={data}>
