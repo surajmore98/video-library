@@ -11,8 +11,8 @@ body {
 }
 
 .App {
-    width: 100vw;
-    height: 100vh;
+    width: auto;
+    min-height: 100vh;
 }
 
 .container {
@@ -92,7 +92,7 @@ body {
 }
 
 .banner-content-info {
-    width: 35%;
+    width: 50%;
     text-align: left;
     letter-spacing: 1px;
 }
@@ -102,12 +102,15 @@ body {
     background-color: var(--primary-color);
 }
 
+.main-btn-wrapper{
+    margin-top: 2rem;
+}
 
 .category-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 
 .category-list::-webkit-scrollbar {
@@ -174,4 +177,8 @@ body {
 .form-container .fixed {
     position: fixed;
     top: 25%;
+}
+
+iframe {
+    border: none;
 }
