@@ -1,31 +1,27 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/auth-context";
+import { useNavigator } from "../utility/navigate";
+import { HOME, LOGIN } from "../utility/route-variables";
 
 export const Navbar = () => {
     const [isMenu, setMenu] = useState(false);
-    const [isAuth, setAuthx] = useState(false);
-    const navigate = useNavigate();
-    
+    const { auth, user } = useAuth();
+    const navigateTo = useNavigator();
+
     const menuClickHandler = () =>  {
         setMenu((value) => !value);
     }
 
-    const logoClickHandler = () => {
-        navigate("/");
-    }
-    
     return (
         <div>
             <nav className="nav-bar fixed">
-                <div className="logo" onClick={logoClickHandler}>
+                <div className="logo pl-md" onClick={() => navigateTo(HOME)}>
                     <div className="logo-text">Sportz</div>
                 </div>
-                <div className="nav-action nav-search-action">
-                    <input type="text" placeholder="Search" className="input search-input"/>
-                    <span className="material-icons search-icon">search</span>
-                </div>
+
                 {
-                    isAuth && 
+                    auth && auth.isAuthenticated && 
                     <div className="nav-action">
                         <button className="btn btn-round" id="menu-btn" onClick={menuClickHandler}>
                             <i className="material-icons">
@@ -36,20 +32,20 @@ export const Navbar = () => {
                 }
 
                 {
-                    !isAuth &&
+                    (!auth || auth && !auth.isAuthenticated) &&
                     <div className="nav-action">
-                        <button className="btn" onClick={() => setAuthx((data) => !data)}> Login </button>
+                        <button className="btn" onClick={() => navigateTo(LOGIN)}> Login </button>
                     </div>
                 }
                 
             </nav>
             <ul className={ isMenu ? 'nav-menu nav-menu-show bg-white' :'nav-menu' }>
-                <li><a className="nav-menu-link charcoal-black">My Name</a></li>
-                <li><Link className="nav-menu-link charcoal-black" to="/playlists">My PlayList</Link></li>
-                <li><a className="nav-menu-link charcoal-black">My PlayList</a></li>
-                <li><a className="nav-menu-link charcoal-black">Watch Later</a></li>
-                <li><a className="nav-menu-link charcoal-black">View History</a></li>
-                <li><a className="nav-menu-link charcoal-black">Liked Videos</a></li>
+                <li className="nav-menu-link charcoal-black"> { user ? `${user.firstName} ${user.lastName}` : 'N/A' } </li>
+                <li><Link className="nav-menu-link charcoal-black" to="/playlists">My Playlist</Link></li>
+                <li><Link className="nav-menu-link charcoal-black" to="/watchlater">Watch Later</Link></li>
+                <li><Link className="nav-menu-link charcoal-black" to="/history">History</Link></li>
+                <li><Link className="nav-menu-link charcoal-black" to="/likes">Likes</Link></li>
+                <li><Link className="nav-menu-link charcoal-black" to="/logout">Logout</Link></li>
             </ul>
         </div>
     );

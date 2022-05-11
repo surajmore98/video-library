@@ -1,0 +1,1 @@
+export const NoItems = () => <h1 className="text-center">No Videos To Show!</h1>

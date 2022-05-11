@@ -3,31 +3,29 @@ import { AddPlayList } from "../components/add-play-list";
 import { Navbar } from "../components/nav-bar";
 import { useAuth } from "../contexts/auth-context";
 import { useData } from "../contexts/data-context";
-import { useNavigate } from "react-router-dom";
 import { removePlaylist } from "../service/play-list-service";
+import { ResponseCode } from "../utility/status-code";
+import { useNavigator } from "../utility/navigate";
+import { PLAYLIST } from "../utility/route-variables";
 
 export const PlayList = () => {
     const [showForm, setShowForm] = useState(false);
     const { playList, setPlayList } = useData();
     const { auth } = useAuth();
-    const navigate = useNavigate();
+    const navigateTo = useNavigator();
 
     const createPlaylistHandler = () => setShowForm(!showForm);
 
     const deletePlayList = async (id) => {
         try {
             const response = await removePlaylist(id, auth.token);
-            if(response.status === 200) {
+            if(response.status === ResponseCode.OK) {
                 setPlayList(response.data.playlists);
             }
         } catch(e) {
             console.error(e);
         }
     };
-
-    const selectPlayListHandler = (id) => {
-        navigate(`/playlist/${id}`);
-    }
 
     return (
         <>
@@ -46,7 +44,7 @@ export const PlayList = () => {
                         playList && playList.map((item) => {
                             const { title, videos, updateDate, _id } = item;
                             return (
-                                <div className="list bg-tertiary primary" key={_id} onClick={() => selectPlayListHandler(_id)}>
+                                <div className="list bg-tertiary primary" key={_id} onClick={() => navigateTo(PLAYLIST, _id)}>
                                     <div className="list-header">
                                         <div>
                                             {title}

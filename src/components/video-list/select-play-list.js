@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../../contexts/auth-context";
 import { useData } from "../../contexts/data-context";
 import { addVideoToPlaylist } from "../../service/play-list-service";
+import { ResponseCode } from "../../utility/status-code";
 
 export const SelectPlayList = ({ formStateSetter }) => {
     const { currentVideo, playList, setPlayListData } = useData();
@@ -17,7 +18,7 @@ export const SelectPlayList = ({ formStateSetter }) => {
     const submitFormHandler = async (e) => {  
         e.preventDefault();
         const response  = await addVideoToPlaylist(playListId, currentVideo, auth.token);
-        if(response.status === 201) {
+        if(response.status === ResponseCode.CREATED) {
             await setPlayListData(auth.token);
             formStateSetter(false);
         }

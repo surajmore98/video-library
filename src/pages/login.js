@@ -5,13 +5,16 @@ import { useAuth } from '../contexts/auth-context';
 import { SnackBar } from '../components/snack-bar';
 import { useData } from '../contexts/data-context';
 import { login } from '../service/auth-service';
+import { ResponseCode } from '../utility/status-code';
+import { useNavigator } from '../utility/navigate';
+import { REGISTER } from '../utility/route-variables';
 
 export const Login = () => {
     const { updateAuth, setUser } = useAuth();
     const { error, setError } = useData();
     const [credential, setCredential] = useState({ email: undefined, password: undefined });
     const [isRemeberMe, setRemeberMe] = useState();
-    const navigate = useNavigate();
+    const navigateTo = useNavigator();
 
     function inputChangeHandler(e, type) {
         const value  = e.target.value;
@@ -28,7 +31,7 @@ export const Login = () => {
             try {
                 const response =  await login(credential);
 
-                if(response.status === 200) {
+                if(response.status === ResponseCode.OK) {
                     updateAuth(response.data.encodedToken, true);
                     setUser(response.data.foundUser);
                     if(isRemeberMe) {
@@ -44,7 +47,6 @@ export const Login = () => {
         }
     }
 
-    const navigateToRegister = () => navigate("/register");
     return (
         <div>
             <Navbar/>
@@ -75,7 +77,7 @@ export const Login = () => {
                             </div>
                         </div>
                         <button className="btn btn-full product-btn bg-secondary white p-md font-bold" type="submit">Login</button> 
-                        <button onClick={navigateToRegister} className="btn btn-full product-btn bg-tertiary charcoal-black p-md font-bold">Create New Account </button> 
+                        <button onClick={() => navigateTo(REGISTER)} className="btn btn-full product-btn bg-tertiary charcoal-black p-md font-bold">Create New Account </button> 
                     </form>
                 </div>
             </div>

@@ -1,0 +1,12 @@
+export const HOME = "";
+export const LOGIN = "login";
+export const LOGOUT = "logout";
+export const REGISTER = "register";
+export const VIDEOS = "videos";
+export const WATCHLATER = "watchlater";
+export const LIKES = "likes";
+export const HISTORY = "history";
+export const PLAYLISTS = "playlists"
+export const PLAYLIST = "playlist";
+export const VIDEO = "video";
+export const VIDEODETAIL = "videodetail";

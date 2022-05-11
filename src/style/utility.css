@@ -47,6 +47,10 @@
     align-self: stretch;
 }
 
+.flex-no-gap {
+    gap: 0;
+}
+
 .grid {
     gap: 1rem;
 }
@@ -106,8 +110,19 @@
 }
 
 .snack-bar {
-    background-color: var(--error-dark);
+    background-color: var(--warning);
     max-width: 20rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.snack-bar-action {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.snack-bar-content {
+    color: var(--primary-color);
 }
 
 .btn-group {
@@ -149,6 +164,12 @@ form {
 
 .vertical-flow-auto {
     overflow-y: auto;
+}
+
+.chip {
+    border-radius: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
 }
 
 .text-center {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../contexts/auth-context";
 import { useData } from "../contexts/data-context";
 import { addToPlayList } from "../service/play-list-service";
+import { ResponseCode } from "../utility/status-code";
 
 const currentDate = () => new Date().toLocaleDateString("en-in");
 
@@ -9,6 +10,7 @@ export const AddPlayList = ({ parentSetHandler }) => {
     const [detail, setDetail] = useState({ title: "", description: "", updateDate: "" });
     const { auth } = useAuth();
     const { setPlayList } = useData();
+
     const closeForm = (e) => {
         e.preventDefault();
         parentSetHandler(false);
@@ -18,7 +20,7 @@ export const AddPlayList = ({ parentSetHandler }) => {
         e.preventDefault();
         try {
             const response = await addToPlayList(detail, auth.token);
-            if(response.status === 201) {
+            if(response.status === ResponseCode.CREATED) {
                 setPlayList(response.data.playlists);
             }
         } catch(e) {
@@ -28,7 +30,6 @@ export const AddPlayList = ({ parentSetHandler }) => {
     }
 
     const inputChangeHandler = (value, type) => setDetail({...detail , [type]: value, updateDate: currentDate()}); 
-
 
     return (
         <div className="pop-up-container flex flex-center show">
