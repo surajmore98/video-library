@@ -1,14 +1,16 @@
 import { useData } from "../../contexts/data-context";
 import { useNavigate } from "react-router-dom";
+import { useNavigator } from "../../utility/navigate";
+import { VIDEOS } from "../../utility/route-variables";
 
 export const Category = ({ category }) => {
     const { setCurrentCategory } = useData();
     const { image, categoryName } = category;
-    const navigate = useNavigate();
+    const navigateTo = useNavigator();
 
     const categoryClickHandler= (category) => {
         setCurrentCategory(category);
-        navigate("/videos");
+        navigateTo(VIDEOS);
     };
 
     return(

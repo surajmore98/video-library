@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/nav-bar';
 import { useAuth } from '../contexts/auth-context';
 import { SnackBar } from '../components/snack-bar';
@@ -7,13 +6,13 @@ import { useData } from '../contexts/data-context';
 import { login } from '../service/auth-service';
 import { ResponseCode } from '../utility/status-code';
 import { useNavigator } from '../utility/navigate';
-import { REGISTER } from '../utility/route-variables';
+import { REGISTER, HOME } from '../utility/route-variables';
 
 export const Login = () => {
     const { updateAuth, setUser } = useAuth();
     const { error, setError } = useData();
-    const [credential, setCredential] = useState({ email: undefined, password: undefined });
-    const [isRemeberMe, setRemeberMe] = useState();
+    const [credential, setCredential] = useState({ email: "", password: "" });
+    const [isRemeberMe, setRemeberMe] = useState(false);
     const navigateTo = useNavigator();
 
     function inputChangeHandler(e, type) {
@@ -38,12 +37,15 @@ export const Login = () => {
                         localStorage.setItem("token", response.data.encodedToken);
                         localStorage.setItem("user", JSON.stringify(response.data.foundUser));
                     }
+                    navigateTo(HOME)
                 }
             } catch(e) {
                 console.error(e);
                 setCredential({ email: "", password: "" });
                 setError(e.response.data['errors']);
             }
+        } else {
+            setError("enter valid credentials");
         }
     }
 
@@ -76,7 +78,7 @@ export const Login = () => {
                                 </label>
                             </div>
                         </div>
-                        <button className="btn btn-full product-btn bg-secondary white p-md font-bold" type="submit">Login</button> 
+                        <button className="btn btn-full product-btn bg-secondary white p-md font-bold" type="submit">Login</button>
                         <button onClick={() => navigateTo(REGISTER)} className="btn btn-full product-btn bg-tertiary charcoal-black p-md font-bold">Create New Account </button> 
                     </form>
                 </div>

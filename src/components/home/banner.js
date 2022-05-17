@@ -1,9 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigator } from "../../utility/navigate";
+import { VIDEODETAIL } from "../../utility/route-variables";
+import { getImageUrl } from "../../utility/video-utils";
 
 export const Banner = () => {
     const [documentaries, setDocumenteries] = useState([]);
     const [current, setCurrent] = useState(0);
+    const navigateTo = useNavigator();
     
     const clickHandler = ({payload, type}) => {
         if(type) {
@@ -35,7 +39,7 @@ export const Banner = () => {
                         setDocumenteries(data);
                     }
                 } catch(ex) {
-                    console.log(ex.message);
+                    console.error(ex.message);
                     throw ex;
                 }
             }
@@ -47,14 +51,15 @@ export const Banner = () => {
         <div className="banner-wrapper pos-rel">
             {
                 documentaries && documentaries.map((item, index) => {
-                    const { image, title, description } = item;
+                    const {title, description, _id } = item;
                     return (
                         <div className = {current === index ? "show banner" : "banner"} key={index}>
-                            <img src={image} className= "image" />
+                            <img src={getImageUrl(_id)} className= "image" />
                             <div className="banner-content">
                                 <h2 className= "banner-content-title">{title}</h2>
-                                <p className= "banner-content-info">{description}</p>
-                                <button className= "btn banner-content-action">Watch</button>
+                                <p className= "banner-content-info">{ description }</p>
+                                <button className= "btn banner-content-action"
+                                onClick={() => navigateTo(VIDEODETAIL, _id)}>Watch</button>
                             </div>
                         </div>
                     );

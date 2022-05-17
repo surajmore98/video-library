@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
 import { useNavigator } from "../utility/navigate";
 import { HOME, LOGIN } from "../utility/route-variables";
+import { Search } from "./search/search";
 
 export const Navbar = () => {
     const [isMenu, setMenu] = useState(false);
@@ -19,6 +20,8 @@ export const Navbar = () => {
                 <div className="logo pl-md" onClick={() => navigateTo(HOME)}>
                     <div className="logo-text">Sportz</div>
                 </div>
+
+                <Search/>
 
                 {
                     auth && auth.isAuthenticated && 

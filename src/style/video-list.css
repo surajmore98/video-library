@@ -56,7 +56,6 @@
 
 .card .image {
     border-radius: 0.25rem;
-    max-width: 25rem;
     min-height: 15rem;
 }
 
@@ -102,16 +101,42 @@
     color: var(--primary-color);
 }
 
+.active .material-icons,
 .material-icons:hover {
     color: var(--white);
 }
+
 .card .active {
     color: var(--white);
     background-color: var(--primary-color);
 }
 
+.card-contenr-header {
+    height: 3.25rem;
+}
+
 @media screen and (max-width: 800px) {
     .video-list {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filter-category-image {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .video-list {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-category-image {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .filter-category-text {
+        font-size: 0.75rem;
     }
 }

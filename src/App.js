@@ -3,7 +3,7 @@ import { ContextWrapper } from "./wrappers/context-wrapper";
 import { RequireAuth } from "./wrappers/require-auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WatchLater, Login, Register, Logout, PlayList, PlayListDetails,
-  LikedVideoList, History, Home, VideoList }
+  LikedVideoList, VideoDetail, History, Mock, Home, VideoList }
   from "./pages/pages";
 
 const App = () => {
@@ -16,9 +16,7 @@ const App = () => {
             <Route path="/" element={<Home />}></Route>
             <Route path="/videos" element={<VideoList />}></Route>
             <Route path="/videos/:type" element={<VideoList />}></Route>
-            <Route path="/playlists" element={<RequireAuth> <PlayList /> </RequireAuth>}></Route>
-            <Route path="/playlist/:id" element={<RequireAuth> <PlayListDetails /> </RequireAuth>}></Route>
-
+            <Route path="/video/:id" element={<VideoDetail />}></Route>
             <Route path="/logout" element={<Logout />}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>
@@ -28,9 +26,11 @@ const App = () => {
             <Route path="/playlists" element={<RequireAuth> <PlayList /> </RequireAuth>}></Route>
             <Route path="/playlist/:id" element={<RequireAuth> <PlayListDetails /> </RequireAuth>}></Route>
             <Route path="/history" element={<RequireAuth> <History /> </RequireAuth>}></Route>
+            {/* mockman route */}
+            <Route path="/mock" element={<Mock/>}></Route> 
           </Routes>
         </ContextWrapper>
-      </BrowserRouter>
+      </BrowserRouter>      
     </div>
   );
 }

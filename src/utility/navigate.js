@@ -6,7 +6,7 @@ export const useNavigator = () => {
     const navigateTo = (path, payload) => {
         switch(path) {
             case LOGIN:
-                return navigate("/login");
+                return navigate('/login');
             case LOGOUT:
                 return navigate("/logout");
             case REGISTER:
@@ -20,7 +20,7 @@ export const useNavigator = () => {
             case PLAYLISTS:
                 return navigate("/playlists");
             case PLAYLIST:
-                return navigate(`/playlist/${playload}`);
+                return navigate(`/playlist/${payload}`);
             case WATCHLATER:
                 return navigate("/watchlater");
             case LIKES:

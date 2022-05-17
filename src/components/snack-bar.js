@@ -1,8 +1,17 @@
+import { useEffect } from "react";
 import { useData } from "../contexts/data-context";
 
 export const SnackBar = ({buttonText, action}) => {
     const { error, setError } = useData();
     const closeClickHandler = () => setError("");
+
+    useEffect(() => {
+        if(error) {
+            setTimeout(() => {
+            setError("");
+            }, 2000);
+        }
+    }, error);
 
     return (
         <div className="component-content-section fixed">

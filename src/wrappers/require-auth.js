@@ -8,5 +8,5 @@ export const RequireAuth = ({ children }) => {
         return children;
     }
 
-    return <Login replace={true}/>
+    return <Login />
 }
