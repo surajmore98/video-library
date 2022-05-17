@@ -67,6 +67,7 @@
     color: var(--primary-color);
     padding: 0.5rem;
     cursor: pointer;
+    font-size: 0.875rem;
 }
 
 .search-item:hover {

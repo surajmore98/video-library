@@ -28,7 +28,7 @@ export const Search = () => {
 
     const navigateToSuggestion = (id) => {
         navigateTo(VIDEODETAIL, id);
-        setSuggetions([]);
+        clear();
     }
 
     const clear = () => {
