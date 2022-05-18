@@ -32,14 +32,14 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "Racing",
-    image: "./images/category/racing.png",
-    iconImage: "./images/racing.png"
-  },
-  {
-    _id: uuid(),
     categoryName: "Badminton",
     image: "./images/category/badminton.png",
     iconImage: "./images/badminton.png"
-  }
+  },
+  {
+    _id: uuid(),
+    categoryName: "Racing",
+    image: "./images/category/racing.png",
+    iconImage: "./images/racing.png"
+  }  
 ];

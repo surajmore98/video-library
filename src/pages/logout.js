@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from '../contexts/auth-context';
 import { useNavigator } from '../utility/navigate';
@@ -10,6 +11,7 @@ export const Logout = () => {
     useEffect(()=> {
         updateAuth("", false);
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
     },[]);
 
     return (

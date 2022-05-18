@@ -1,2 +1,19 @@
 @import url("https://charcoalxui.netlify.app/src/style/style.css");
 
+@media only screen and (max-width: 900px) {
+    html {
+      font-size: 14px;
+    }
+}
+  
+@media only screen and (max-width: 700px) {
+    html {
+      font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    html {
+      font-size: 10px;
+    }
+}

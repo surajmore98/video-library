@@ -4,10 +4,11 @@ import { removeFromWatchLaterVideos, addToWatchLaterVideos} from "../../service/
 import { addToLikedVideos, removeFromLikedVideos } from "../../service/like-video-service";
 import { ResponseCode } from "../../utility/status-code";
 import { useNavigator } from "../../utility/navigate";
-import { LOGIN } from "../../utility/route-variables";
+import { VIDEODETAIL, LOGIN } from "../../utility/route-variables";
+import { getImageUrl } from "../../utility/video-utils";
 
 export const Video = ({ data, formStateSetter }) => {
-    const { title, creator, image, _id } = data;
+    const { title, creator, _id } = data;
     const { setError, setLikedVideos, setWatchLater, likedVideoList, watchLaterList, setCurrentVideo, playList } = useData();
     const { auth } = useAuth(); 
     const navigateTo = useNavigator();
@@ -80,7 +81,7 @@ export const Video = ({ data, formStateSetter }) => {
     return (
         <div className="card">
             <div className="card-content">
-                <img src={image} className="image" alt="card-image"/>
+                <img src={getImageUrl(_id)} className="image" alt="card-image"/>
             </div>
             <div className="card-content-header">
                 <span className="secondary-header secondary font-bold">{title}</span>
@@ -88,7 +89,7 @@ export const Video = ({ data, formStateSetter }) => {
             </div>
             <div className="card-btn-group">
                 <div className="flex">
-                    <button className="btn btn-round">
+                    <button className="btn btn-round" onClick={() => navigateTo(VIDEODETAIL, _id)}>
                         <i className="material-icons">play_arrow</i>
                     </button>
                 </div>

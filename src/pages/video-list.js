@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/nav-bar";
 import { SnackBar } from "../components/snack-bar";
 import { CategoryList } from "../components/video-list/category-list";
