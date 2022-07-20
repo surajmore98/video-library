@@ -26,6 +26,14 @@ export const Login = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        await loginHandler(credential);
+    }
+
+    async function guestLoginHandler() {
+        await loginHandler({ email: "test@gmail.com", password: "password123" });
+    }
+
+    async function loginHandler(credential) {
         if(credential) {
             try {
                 const response =  await login(credential);
@@ -79,6 +87,7 @@ export const Login = () => {
                             </div>
                         </div>
                         <button className="btn btn-full product-btn bg-secondary white p-md font-bold" type="submit">Login</button>
+                        <button className="btn btn-full product-btn btn-outline bg-white secondary p-md font-bold" onClick={guestLoginHandler}>Guest Login</button>
                         <button onClick={() => navigateTo(REGISTER)} className="btn btn-full product-btn bg-tertiary charcoal-black p-md font-bold">Create New Account </button> 
                     </form>
                 </div>

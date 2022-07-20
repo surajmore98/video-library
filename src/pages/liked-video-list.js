@@ -26,8 +26,8 @@ export const LikedVideoList = () => {
                     <div className="bg-charcoal-white p-xl pt-0 vertical-flow-auto">
                     {
                         likedVideoList && likedVideoList.length ?
-                         likedVideoList.map((video) => 
-                         <PlaylistItem video={video} deleteVideoHandler={removeVideo} />)
+                         likedVideoList.map((video, index) => 
+                         <PlaylistItem video={video} deleteVideoHandler={removeVideo} key={index}/>)
                          : <NoItems/>
                     }
                 </div>

@@ -103,10 +103,6 @@ export const Video = ({ data, formStateSetter }) => {
                     <button className="btn btn-round" onClick={playListClickHandler}>
                         <i className="material-icons" title="add to playlist">playlist_add</i>
                     </button>
-                    {/* To-do functionality */}
-                    {/* <button className="btn btn-round">
-                        <i className="material-icons">share</i>
-                    </button> */}
                 </div>
             </div>
         </div>

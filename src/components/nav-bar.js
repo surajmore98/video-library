@@ -37,7 +37,7 @@ export const Navbar = () => {
                 {
                     (!auth || auth && !auth.isAuthenticated) &&
                     <div className="nav-action">
-                        <button className="btn" onClick={() => navigateTo(LOGIN)}> Login </button>
+                        <button className="btn font-bold" onClick={() => navigateTo(LOGIN)}> Login </button>
                     </div>
                 }
                 

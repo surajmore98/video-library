@@ -52,8 +52,10 @@
 .nav-menu {
     background-color: var(--tertiary-color);
     position: fixed;
-    width: 100%;
+    width: 35%;
     top: 3.5rem;
+    right: 0;
+    height: calc(100% - 3.5rem);
 }
 
 .search-item-list {

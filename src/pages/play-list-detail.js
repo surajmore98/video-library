@@ -39,7 +39,7 @@ export const PlayListDetails = () => {
                 </div>
                 <div className="bg-charcoal-white p-xl pt-0 vertical-flow-auto">
                 {
-                    (currentPlayList && currentPlayList.length) ?
+                    (currentPlayList.videos && currentPlayList.videos.length) ?
                         currentPlayList.videos.map((video, index) => <PlaylistItem video={video} deleteVideoHandler={removeVideo} key={index} />)
                         : <NoItems/>
                 }
