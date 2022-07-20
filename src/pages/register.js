@@ -26,7 +26,7 @@ export const Register = () => {
                 const response =  await register(credential);
                 if(response.status === ResponseCode.CREATED) {
                     updateAuth(response.data.encodedToken, true);
-                    setUser(response.data.foundUser);
+                    setUser(response.data.createdUser);
                     navigateTo(HOME);
                 }
             } catch(e) {
