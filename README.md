@@ -1,7 +1,7 @@
 ## Video Library 
 [https://sportzlib.netlify.app](https://sportzlib.netlify.app)
 
-This is video library web app for shoes built using React, Javascript, HTML, CSS and [mockbee](https://mockbee.netlify.app) Mock API.
+This is video library web app for Sports built using React, Javascript, HTML, CSS and [mockbee](https://mockbee.netlify.app) Mock API.
 
 ### Features:
 
